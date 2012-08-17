@@ -1,0 +1,83 @@
+<?php
+
+namespace Collective\GovtBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Collective\GovtBundle\Entity\Location;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class DefaultController extends Controller
+{
+ 
+     public function jsonAction()
+    {
+       $locations = $this->getDoctrine()
+        ->getRepository('CollectiveGovtBundle:Location')
+        ->findAll();
+
+       if (!$locations) {
+         throw $this->createNotFoundException('No locations found.. yet');
+       }
+       
+       // render it is json     
+       $response = new Response();                                                
+       $response->headers->set('Content-type', 'application/json; charset=utf-8');
+   
+       return $this->render('CollectiveGovtBundle:Default:index.json.twig', array('data' => $locations), $response);
+    }
+       
+    public function indexAction()
+    {
+       $locations = $this->getDoctrine()
+        ->getRepository('CollectiveGovtBundle:Location')
+        ->findAll();
+
+       if (!$locations) {
+         throw $this->createNotFoundException('No locations found.. yet');
+       }
+
+       return $this->render('CollectiveGovtBundle:Default:index.html.twig', array('data' => $locations));
+    }
+
+    public function newAction()
+    {
+       return $this->render('CollectiveGovtBundle:Default:new.html.twig');
+    }       
+           
+    public function addAction(Request $request)
+    {
+       $location = new Location();
+       $location->setName($request->get('name'));
+       $location->setLat($request->get('lat'));
+       $location->setLon($request->get('lon'));
+   
+       $em = $this->getDoctrine()->getEntityManager();
+       $em->persist($location);
+       $em->flush();
+       
+       if($request->get('q'))
+         return new Response('Added');
+
+//       return new Response('Created location id '.$location->getId());
+       $this->get('session')->setFlash('notice', 'Location '.$location->getId().' added successfully.');
+       return $this->redirect($this->generateUrl('CollectiveGovtBundle_homepage'));       
+    }
+
+    public function removeAction($id)
+    {
+       $em = $this->getDoctrine()->getEntityManager();
+       $location = $em->getRepository('CollectiveGovtBundle:Location')->find($id);
+
+       if (!$location) {
+         throw $this->createNotFoundException('Location not found with id: ' . $id);
+       }
+
+       $em->remove($location);
+       $em->flush();  
+       
+       $this->get('session')->setFlash('notice', 'Location '.$id.' removed successfully.');
+       return $this->redirect($this->generateUrl('CollectiveGovtBundle_homepage'));       
+    }
+}

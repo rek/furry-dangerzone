@@ -1,0 +1,15 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+{% for d in data %}    
+    { 
+        "type": "Feature",
+        "geometry": { 
+            "type": "Point", 
+            "coordinates": [{{ d.lat }}, {{ d.lon }}]
+        }, 
+        "properties": {
+            "name" : "{{ d.name }}"
+        }
+    }{% if not loop.last %},{% endif %}{% endfor %}]
+}

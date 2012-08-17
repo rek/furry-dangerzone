@@ -1,0 +1,21 @@
+namespace Collective\GovtBundle\Repository;
+
+use Doctrine\ORM\EntityRepository;
+
+class LocationRepository extends EntityRepository
+{
+    /**
+     * To string
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->getLon() . ',' . $this->getLat();
+    }
+    
+    //public function getLinks()
+    //{
+    //	 return $this->getEntityManager()->getRepository('CollectiveGovtBundle:Links')->findById($this->getId());
+    //}
+}

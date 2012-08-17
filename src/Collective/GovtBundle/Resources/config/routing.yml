@@ -1,0 +1,37 @@
+CollectiveGovtBundle_link_new:
+    pattern:  /link/new
+    defaults: { _controller: CollectiveGovtBundle:Link:new }
+
+CollectiveGovtBundle_link_add:
+    pattern:  /link/add/{id}
+    defaults: { _controller: CollectiveGovtBundle:Link:add }
+
+CollectiveGovtBundle_show_location:
+    pattern:  /location/{id}.{_format}
+    defaults: { _controller: CollectiveGovtBundle:Location:show, _format: html }
+    requirements:
+      _format:  html|json
+
+CollectiveGovtBundle_link_remove:
+    pattern:  /link_remove/{id}
+    defaults: { _controller: CollectiveGovtBundle:Link:remove }
+    
+          
+    
+CollectiveGovtBundle_new:
+    pattern:  /new
+    defaults: { _controller: CollectiveGovtBundle:Location:new }
+
+CollectiveGovtBundle_add:
+    pattern:  /add
+    defaults: { _controller: CollectiveGovtBundle:Location:add }
+
+CollectiveGovtBundle_remove:
+    pattern:  /remove/{id}
+    defaults: { _controller: CollectiveGovtBundle:Location:remove }
+
+CollectiveGovtBundle_homepage:
+    pattern:  /{_format}
+    defaults: { _controller: CollectiveGovtBundle:Location:index, _format: html }
+    requirements:
+      _format:  html|json

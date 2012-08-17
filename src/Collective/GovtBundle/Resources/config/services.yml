@@ -1,0 +1,7 @@
+parameters:
+#    collective_govt.example.class: Collective\GovtBundle\Example
+
+services:
+#    collective_govt.example:
+#        class: %collective_govt.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

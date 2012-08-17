@@ -1,0 +1,12 @@
+ <form id="add" method="GET" action="{{ path('CollectiveGovtBundle_link_add', {'id': location.id}) }}">
+     <!--<label for="name"><span>Name</span></label>-->
+     <input name="name" id="name" type="name" placeholder="Name" class="medium_txt">
+
+     <!--<label for="lat"><span>Latitude</span></label>-->
+     <input name="lat" id="lat" type="lat" placeholder="Latitude" class="medium_txt">
+
+     <!--<label for="lon"><span>Longitude</span></label>-->
+     <input name="lon" id="lon" type="lon" placeholder="Longitude" class="medium_txt">
+
+     <input type="submit" class="symfony-button-grey" value="Add" />
+ </form>

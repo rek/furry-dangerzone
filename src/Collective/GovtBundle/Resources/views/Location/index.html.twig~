@@ -1,0 +1,18 @@
+{% extends "CollectiveGovtBundle::layout.html.twig" %}
+
+{% block content %}
+  <div>
+    <h2>Current nodes:</h2>
+  
+    {% for d in data %}
+      <div><a href="{{ path('CollectiveGovtBundle_show_location', {'id': d.id}) }}">{{ d }}</a> - <a href="{{ path('CollectiveGovtBundle_remove', {'id': d.id}) }}">x</a></div>
+    {% endfor %}
+  </div>
+  
+  <div style="margin-top:20px;">
+     <a href="{{ path('CollectiveGovtBundle_new') }}">Add location</a>
+     -
+     <a href="{{ path('CollectiveGovtBundle_homepage', {'_format': 'json'}) }}">GeoJson</a>
+          
+  </div>
+{% endblock %}

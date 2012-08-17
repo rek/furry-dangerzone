@@ -1,0 +1,27 @@
+{% extends "CollectiveGovtBundle::layout.html.twig" %}
+
+{% block content %}
+  <div>
+    <h2>Links for location: {{ location }}</h2>
+  </div>
+   
+    {% for link in location.links %}
+      <div>
+        {{ link }}
+        - 
+        <a href="{{ path('CollectiveGovtBundle_link_remove', {'id': link.id}) }}">
+          x
+        </a>      
+      </div>
+    {% endfor %}
+    
+  <div style="margin-top:20px;">
+     <a href="{{ path('CollectiveGovtBundle_homepage') }}"><- Back to list</a>
+     -
+     <a href="{{ path('CollectiveGovtBundle_link_new', {'id': location.id}) }}">Add link</a>
+     -
+     <a href="{{ path('CollectiveGovtBundle_show_location', {'id': location.id, '_format': 'json'}) }}">
+       GeoJson
+     </a>
+  </div>
+{% endblock %}
