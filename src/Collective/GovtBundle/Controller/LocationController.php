@@ -86,7 +86,7 @@ class LocationController extends Controller
        {
          throw $this->createNotFoundException('Location not found with id: ' . $id);
        }
-   
+
        return array('location' => $location);
     }
     

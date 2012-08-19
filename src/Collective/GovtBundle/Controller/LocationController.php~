@@ -87,6 +87,11 @@ class LocationController extends Controller
          throw $this->createNotFoundException('Location not found with id: ' . $id);
        }
    
+   // render it is json     
+$response = new Response();                                                
+$response->headers->set('Access-Control-Allow-Origin', 'http://localhost'); 
+$response->send();
+
        return array('location' => $location);
     }
     
@@ -94,8 +99,10 @@ class LocationController extends Controller
     * Remove a location
     *
     */
-    public function removeAction($id)
+    public function removeAction(Request $request)
     {
+    	 // get our link
+    	 $id = $request->get('id');
        $em = $this->getDoctrine()->getEntityManager();
        $location = $em->getRepository('CollectiveGovtBundle:Location')->find($id);
 
