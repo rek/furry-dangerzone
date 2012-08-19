@@ -27,8 +27,8 @@ This will return a GeoJson object.
 
 ### To add a new location
 
-etc
+    http://yoursite/location/add
 
 ### To add new location information
 
-etc
+    http://yoursite/link/add/{id}
