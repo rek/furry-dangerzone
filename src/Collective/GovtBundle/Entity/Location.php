@@ -25,7 +25,7 @@ class Location
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $name;
 
@@ -38,6 +38,11 @@ class Location
      * @ORM\Column(type="float", scale=2)
      */
     protected $lon;
+    
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $icon;    
     
     public function __construct()
     {
@@ -142,5 +147,25 @@ class Location
     public function getLinks()
     {
         return $this->links;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string 
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 }

@@ -87,7 +87,7 @@ class LinkController extends Controller
        }
        
        // save the id, so we know where to go back to.
-       $location = $link->getLocation()->getId());
+       $location = $link->getLocation()->getId();
        
        // remove it
        $em->remove($link);

@@ -6,10 +6,12 @@
         "type": "Feature",
         "geometry": { 
             "type": "Point", 
-            "coordinates": [{{ d.lat }}, {{ d.lon }}]
+            "coordinates": [{{ d.lon }}, {{ d.lat }}]
         }, 
         "properties": {
-            "name" : "{{ d.name }}"
+            "name" : "{{ d.name }}",
+            "icon" : "{{ d.icon }}",
+            "id"   : "{{ d.id }}"
         }
     }{% if not loop.last %},{% endif %}{% endfor %}]
 }

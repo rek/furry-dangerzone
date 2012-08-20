@@ -95,7 +95,7 @@ class LinkController extends Controller
        
        // if this flag is set, then just return text (used for ajax calls)
        if($request->isXmlHttpRequest())
-         return new Response('Added');
+         return new Response('Removed');
 
        // show a nice message and return to the link list page
        $this->get('session')->setFlash('notice', 'Link '.$id.' removed successfully.');

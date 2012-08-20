@@ -61,10 +61,15 @@ class LocationController extends Controller
        $em->persist($location);
        $em->flush();
        
+       // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
-         return new Response('Added');
+       {
+         $response = new Response();
+         $response->setContent($location->getId());                                                
+         return $response;
+       }
 
-//       return new Response('Created location id '.$location->getId());
+       // else if we are accessing from the web, display a nice message
        $this->get('session')->setFlash('notice', 'Location '.$location->getId().' added successfully.');
        return $this->redirect($this->generateUrl('CollectiveGovtBundle_homepage'));       
     }
@@ -108,10 +113,15 @@ class LocationController extends Controller
        $em->remove($location);
        $em->flush();  
        
-       // if this flag is set, then just return text (used for ajax calls)
+       // if it is an ajax request, return the state.
        if($request->isXmlHttpRequest())
-         return new Response('Added');
-                
+       {
+         $response = new Response();
+         $response->setContent($id);                                                
+         return $response;
+       }
+
+       // else if we are accessing from the web, display a nice message     
        $this->get('session')->setFlash('notice', 'Location '.$id.' removed successfully.');
        return $this->redirect($this->generateUrl('CollectiveGovtBundle_homepage'));       
     }

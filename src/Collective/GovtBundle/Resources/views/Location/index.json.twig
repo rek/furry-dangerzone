@@ -9,7 +9,9 @@
             "coordinates": [{{ d.lon }}, {{ d.lat }}]
         }, 
         "properties": {
-            "name" : "{{ d.name }}"
+            "id"   : "{{ d.id }}",
+            "name" : "{{ d.name }}",
+            "icon" : "{{ d.icon }}"
         }
     }{% if not loop.last %},{% endif %}{% endfor %}]
 }
