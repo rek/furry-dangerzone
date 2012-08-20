@@ -5,7 +5,7 @@
     {% for l in location.links %} 
     { 
         "type": "link",
-        "title": "{{ l.title }}"
+        "title": "{{ l.title }}",
         "link": "{{ l.link }}"
     }{% if not loop.last %},{% endif %}{% endfor %}]
 }
