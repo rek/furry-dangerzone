@@ -4,8 +4,9 @@
     "links": [
     {% for l in location.links %} 
     { 
+        "id": "{{ l.id }}",
         "type": "link",
-        "title": "{{ l.title }}"
+        "title": "{{ l.title }}",
         "link": "{{ l.link }}"
     }{% if not loop.last %},{% endif %}{% endfor %}]
 }

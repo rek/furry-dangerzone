@@ -13,7 +13,7 @@ CollectiveGovtBundle_show_location:
       _format:  html|json
 
 CollectiveGovtBundle_link_remove:
-    pattern:  /link_remove/{id}
+    pattern:  /link/remove/{id}
     defaults: { _controller: CollectiveGovtBundle:Link:remove }
     
           

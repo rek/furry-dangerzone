@@ -11,6 +11,12 @@ CollectiveGovtBundle_show_location:
     defaults: { _controller: CollectiveGovtBundle:Location:show, _format: html }
     requirements:
       _format:  html|json
+
+CollectiveGovtBundle_link_remove:
+    pattern:  /link_remove/{id}
+    defaults: { _controller: CollectiveGovtBundle:Link:remove }
+    
+          
     
 CollectiveGovtBundle_new:
     pattern:  /new

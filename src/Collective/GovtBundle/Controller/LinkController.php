@@ -65,8 +65,13 @@ class LinkController extends Controller
        $em->persist($link);
        $em->flush();
        
+       // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
-         return new Response('Added');
+       {
+         $response = new Response();
+         $response->setContent($link->getId());                                                
+         return $response;
+       }
 
        $this->get('session')->setFlash('notice', 'Link '.$link->getId().' added successfully.');
        return $this->redirect($this->generateUrl('CollectiveGovtBundle_show_location', array('id'=> $id)));       
@@ -94,8 +99,14 @@ class LinkController extends Controller
        $em->flush();  
        
        // if this flag is set, then just return text (used for ajax calls)
+       // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
-         return new Response('Removed');
+       {
+         $response = new Response();
+         $response->setContent($id);      
+         $response->setStatusCode(200);                                          
+         return $response;
+       }
 
        // show a nice message and return to the link list page
        $this->get('session')->setFlash('notice', 'Link '.$id.' removed successfully.');
