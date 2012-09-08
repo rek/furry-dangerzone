@@ -1,7 +1,13 @@
 {% extends "CollectiveGovtBundle::layout.html.twig" %}
 
-{% block content %}
+{% block content %}  
   <div>
+    <form action="{{ path('login_check') }}" method="post">
+      <button type="submit">login</button>
+    </form>
+    <form action="{{ path('logout') }}" method="post">
+      <button type="submit">logout</button>
+    </form>    
     <h2>Current nodes:</h2>
   
     {% for d in data %}

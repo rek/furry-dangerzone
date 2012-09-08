@@ -52,6 +52,16 @@ class LocationController extends Controller
     */           
     public function addAction(Request $request)
     {
+       // prepare a response
+       $response = new Response();
+
+       if (!$this->get('security.context')->isGranted('ROLE_USER'))
+       {
+         $response->setContent('Not Authorized');
+         $response->setStatusCode('403');                                                
+         return $response;
+       }
+       
        $location = new Location();
        $location->setName($request->get('name'));
        $location->setLat($request->get('lat'));
@@ -64,7 +74,6 @@ class LocationController extends Controller
        // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
        {
-         $response = new Response();
          $response->setContent($location->getId());                                                
          return $response;
        }

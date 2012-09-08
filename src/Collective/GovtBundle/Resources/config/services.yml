@@ -5,3 +5,13 @@ services:
 #    collective_govt.example:
 #        class: %collective_govt.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+parameters:
+    vendor_security.authentication_handler: Collective\GovtBundle\Handler\AuthenticationHandler
+
+services:
+    authentication_handler:
+        class:  %vendor_security.authentication_handler%
+        arguments:  [@router]
+        tags:
+            - { name: 'monolog.logger' channel: 'security' }
