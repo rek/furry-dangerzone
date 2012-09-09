@@ -26,6 +26,11 @@ class Link
      * @ORM\Column(type="string", length=100)
      */
     protected $title;
+    
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $type;    
 
     /**
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="link")
@@ -111,5 +116,25 @@ class Link
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

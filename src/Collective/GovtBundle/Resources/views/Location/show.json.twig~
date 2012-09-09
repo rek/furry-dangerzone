@@ -1,12 +1,18 @@
 {
     "type"  : "Location",
     "title" : "{{ location }}",
-    "links": [
-    {% for l in location.links %} 
+    "links" : [
     { 
-        "id": "{{ l.id }}",
-        "type": "link",
+        "id"   : "1231432",
+        "type" : "flickr",
+        "title": "testing link",
+        "link" : "http://farm8.staticflickr.com/7196/7070072209_d1f393c797_n.jpg"
+    },    
+    {% for l in location.links %}     
+    { 
+        "id"   : "{{ l.id }}",
+        "type" : "youtube",
         "title": "{{ l.title }}",
-        "link": "{{ l.link }}"
+        "link" : "{{ l.link }}"
     }{% if not loop.last %},{% endif %}{% endfor %}]
 }

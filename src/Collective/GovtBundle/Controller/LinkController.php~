@@ -55,16 +55,17 @@ class LinkController extends Controller
        if (!$location) {
          throw $this->createNotFoundException('Invalid location: ' . $id);
        }
-      
+
        $link = new Link();
        $link->setLocation($location);
        $link->setLink($request->get('link'));
+       $link->setType($request->get('type'));
        $link->setTitle($request->get('title'));
-   
+
        $em = $this->getDoctrine()->getEntityManager();
        $em->persist($link);
        $em->flush();
-       
+
        // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
        {
@@ -103,7 +104,7 @@ class LinkController extends Controller
        if($request->isXmlHttpRequest())
        {
          $response = new Response();
-         $response->setContent($location->getId());      
+         $response->setContent($id);      
          $response->setStatusCode(200);                                          
          return $response;
        }

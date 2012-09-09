@@ -55,6 +55,7 @@ class LocationController extends Controller
        // prepare a response
        $response = new Response();
 
+       // require login
        if (!$this->get('security.context')->isGranted('ROLE_USER'))
        {
          $response->setContent('Not Authorized');
@@ -110,6 +111,17 @@ class LocationController extends Controller
     */
     public function removeAction(Request $request)
     {
+       // prepare a response
+       $response = new Response();
+
+       // require login
+       if (!$this->get('security.context')->isGranted('ROLE_USER'))
+       {
+         $response->setContent('Not Authorized');
+         $response->setStatusCode('403');                                                
+         return $response;
+       }
+      
     	 // get our link
     	 $id = $request->get('id');
        $em = $this->getDoctrine()->getEntityManager();
@@ -125,7 +137,6 @@ class LocationController extends Controller
        // if it is an ajax request, return the state.
        if($request->isXmlHttpRequest())
        {
-         $response = new Response();
          $response->setContent($id);                                                
          return $response;
        }
@@ -134,4 +145,6 @@ class LocationController extends Controller
        $this->get('session')->setFlash('notice', 'Location '.$id.' removed successfully.');
        return $this->redirect($this->generateUrl('CollectiveGovtBundle_homepage'));       
     }
+    
+    
 }

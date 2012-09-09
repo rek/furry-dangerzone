@@ -2,10 +2,10 @@
     "type"  : "Location",
     "title" : "{{ location }}",
     "links" : [
-    {% for l in location.links %} 
+    {% for l in location.links %}     
     { 
         "id"   : "{{ l.id }}",
-        "type" : "link",
+        "type" : "{{ l.type }}",
         "title": "{{ l.title }}",
         "link" : "{{ l.link }}"
     }{% if not loop.last %},{% endif %}{% endfor %}]

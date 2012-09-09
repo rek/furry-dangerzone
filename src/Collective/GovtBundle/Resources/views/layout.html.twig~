@@ -3,7 +3,8 @@
   <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" type="text/css" media="all" />
-     <title>{% block title %}Slogans{% endblock %}</title>
+     <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" media="all" />
+     <title>{% block title %}Hackitup{% endblock %}</title>
      <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
   </head>
   <body>

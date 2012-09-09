@@ -46,6 +46,17 @@ class LinkController extends Controller
     */ 
     public function addAction(Request $request)
     {
+       // prepare a response
+       $response = new Response();
+
+       // require login
+       if (!$this->get('security.context')->isGranted('ROLE_USER'))
+       {
+         $response->setContent('Not Authorized');
+         $response->setStatusCode('403');                                                
+         return $response;
+       }
+            
        $id = $request->get('id');
 
        $location = $this->getDoctrine()
@@ -55,20 +66,20 @@ class LinkController extends Controller
        if (!$location) {
          throw $this->createNotFoundException('Invalid location: ' . $id);
        }
-      
+
        $link = new Link();
        $link->setLocation($location);
        $link->setLink($request->get('link'));
+       $link->setType($request->get('type'));
        $link->setTitle($request->get('title'));
-   
+
        $em = $this->getDoctrine()->getEntityManager();
        $em->persist($link);
        $em->flush();
-       
+
        // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
        {
-         $response = new Response();
          $response->setContent($link->getId());                                                
          return $response;
        }
@@ -82,6 +93,17 @@ class LinkController extends Controller
     */ 
     public function removeAction(Request $request)
     {
+       // prepare a response
+       $response = new Response();
+
+       // require login
+       if (!$this->get('security.context')->isGranted('ROLE_USER'))
+       {
+         $response->setContent('Not Authorized');
+         $response->setStatusCode('403');                                                
+         return $response;
+       }
+            
     	 // get our link
     	 $id = $request->get('id');
        $em = $this->getDoctrine()->getEntityManager();
@@ -102,7 +124,6 @@ class LinkController extends Controller
        // if it is an ajax request, return the new id only.
        if($request->isXmlHttpRequest())
        {
-         $response = new Response();
          $response->setContent($id);      
          $response->setStatusCode(200);                                          
          return $response;

@@ -26,6 +26,11 @@ class Link
      * @ORM\Column(type="string", length=100)
      */
     protected $title;
+    
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $type;    
 
     /**
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="link")
