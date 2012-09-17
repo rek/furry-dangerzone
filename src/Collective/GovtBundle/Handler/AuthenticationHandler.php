@@ -27,7 +27,7 @@ implements AuthenticationSuccessHandlerInterface,
         if ($request->isXmlHttpRequest()) 
         {
           $return = array( 'responseCode' => 200, 
-                            'state'        => true );
+                            'state'       => true );
      
           //make sure it has the correct content type
           return new Response(json_encode($return), 200, array('Content-Type'=>'application/json'));

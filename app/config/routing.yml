@@ -6,13 +6,13 @@ login_check:
 logout:
     pattern:   /logout
     defaults:  { _controller: CollectiveGovtBundle:Security:logout }
-    
+
 authed:
     pattern:   /authed
     defaults:  { _controller: CollectiveGovtBundle:Security:getAuthState }
     requirements:
       _method:  POST
-      
+
 CollectiveGovtBundle:
     resource: "@CollectiveGovtBundle/Resources/config/routing.yml"
     prefix:   /
